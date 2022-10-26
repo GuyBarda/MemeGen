@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Sprint2</title>
+    </head>
+    <body onload="onInit()">
+        <header class="main-header">
+            <div class="header-container flex">
+                <div class="logo">MemeGen</div>
+                <nav class="main-nav">
+                    <ul class="clean-list flex justify-center">
+                        <li><button href="#">Gallery</button></li>
+                        <li><button href="#">Memes</button></li>
+                        <li><button href="#">About</button></li>
+                    </ul>
+                </nav>
+                <!-- <div class="menu-button" onclick="toggleMenu(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div> -->
+            </div>
+        </header>
+        <section class="gallery flex">
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search" />
+                <div class="search-buttons">Funny</div>
+            </div>
+            <div class="images-container"></div>
+        </section>
+        <section class="editor flex space-between hidden">
+            <canvas></canvas>
+            <div class="editor-mode flex space-between">
+                <input type="text" class="text1" placeholder="CAN'T GET FIRED" oninput="renderMemeText(0,this.value)" />
+                <div class="buttons-text-main flex space-between">
+                    <button class="switch">↨</button>
+                    <button class="add-line">+</button>
+                    <button class="delete-line">X</button>
+                </div>
+                <div class="buttons-text-secondary flex space-between">
+                    <button class="switch">↨</button>
+                    <button class="switch">↨</button>
+                    <button class="switch">↨</button>
+                    <button class="switch">↨</button>
+                    <button class="switch">↨</button>
+                </div>
+                <div class="share-buttons flex space-between">
+                    <button class="save" onclick="onSaveMeme()">save</button>
+                    <button class="share">share</button>
+                    <button class="download">download</button>
+                </div>
+            </div>
+        </section>
+        <script src="js/utility.js"></script>
+        <script src="js/storage.js"></script>
+        <script src="js/services/main-service.js"></script>
+        <script src="js/controller/main-controller.js"></script>
+    </body>
+</html>
