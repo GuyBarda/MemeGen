@@ -23,12 +23,7 @@ function renderCanvas() {
     img.src = meme.img.url;
     // gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     // console.log(img);
-    // img.onload = () => {
-    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-    //     console.log(img);
-    // };
 
-    // var ratio = img.naturalHeight / img.naturalWidth;
     let imgHeight = img.naturalHeight;
     let imgWidth = img.naturalWidth;
     const elContainer = document.querySelector(".editor-mode");
@@ -48,8 +43,8 @@ function drawText(line) {
     gCtx.fillStyle = line.color;
     gCtx.font = `${line.size}px Arial`;
     gCtx.textAlign = line.align;
-    gCtx.fillText(line.txt, 0, 0); // Draws (fills) a given text at the given (x, y) position.
-    gCtx.strokeText(line.txt, 0, 0); // Draws (strokes) a given text at the given (x, y) position.
+    gCtx.fillText(line.txt, 100, 100); // Draws (fills) a given text at the given (x, y) position.
+    gCtx.strokeText(line.txt, 100, 100); // Draws (strokes) a given text at the given (x, y) position.
 }
 
 function onDeleteLine(elInput, idx = 0) {
