@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="css/style.css" />
         <title>Sprint2</title>
     </head>
-    <body onload="onInit()">
+    <body class="flex flex-column" onload="onInit()">
         <header class="main-header">
-            <div class="header-container flex">
+            <div class="header-container flex align-center space-between">
                 <div class="logo">MemeGen</div>
                 <nav class="main-nav flex">
                     <button onclick="onShowGallery()">Gallery</button>
@@ -18,23 +18,23 @@
                 </nav>
             </div>
         </header>
-        <section class="gallery flex">
-            <div class="search">
+        <section class="gallery flex flex-column">
+            <div class="search flex space-between">
                 <input type="text" class="search-input" placeholder="Search" oninput="onFilterBy(this.value)" />
-                <div class="search-buttons">
+                <div class="search-buttons flex">
                     <button class="funny" onclick="onFilterButton(this, 'funny')">funny</button>
                     <button class="cat" onclick="onFilterButton(this, 'cat')">cat</button>
                     <button class="dog" onclick="onFilterButton(this, 'dog')">dog</button>
                     <button class="baby" onclick="onFilterButton(this, 'baby')">baby</button>
                 </div>
             </div>
-            <div class="images-container"></div>
+            <div class="images-container flex"></div>
         </section>
         <section class="editor flex space-between hidden">
             <div class="canvas-container">
                 <canvas></canvas>
             </div>
-            <div class="editor-mode flex space-between">
+            <div class="editor-mode flex flex-column space-between">
                 <div class="line1">
                     <input
                         type="text"

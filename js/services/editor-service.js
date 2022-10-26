@@ -10,7 +10,7 @@ function createMeme(img) {
     };
 }
 
-function createLine(txt = "", size = "16", align = "center", color = "white") {
+function createLine(txt = "", size = "35", align = "center", color = "white") {
     return {
         txt,
         size,
@@ -32,8 +32,14 @@ function setLine(idx, txt) {
     gMeme.lines[idx].txt = txt;
 }
 
-function deleteLine(idx = 0) {
-    gMeme.lines.splice(idx, 1);
+function switchLine() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
+    else gMeme.selectedLineIdx++;
+    console.log(gMeme.selectedLineIdx);
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
     console.log(gMeme.lines);
 }
 function saveMeme() {
@@ -45,13 +51,13 @@ function saveMemesToStorage() {
     saveToStorage(memesKey, gMemes);
 }
 
-function setFontSize(action, idx = 0) {
-    if (action === "+") gMeme.lines[idx].size++;
-    else gMeme.lines[idx].size--;
+function setFontSize(action) {
+    if (action === "+") gMeme.lines[gMeme.selectedLineIdx].size++;
+    else gMeme.lines[gMeme.selectedLineIdx].size--;
 }
 
-function setTextAlign(align, idx = 0) {
-    gMeme.lines[idx].align = align;
+function setTextAlign(align) {
+    gMeme.lines[gMeme.selectedLineIdx].align = align;
 }
 
 function setFilterBy(filterBy) {

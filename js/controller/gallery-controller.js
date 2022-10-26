@@ -41,7 +41,7 @@ function openEditor(id) {
     document.querySelector(".editor").classList.remove("hidden");
     document.querySelector(".memes").classList.add("hidden");
     setMeme(img);
-    resizeCanvas();
+    resizeCanvas(img);
     renderCanvas();
 }
 
