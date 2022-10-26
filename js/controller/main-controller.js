@@ -75,6 +75,24 @@ function drawText(line) {
     gCtx.strokeText(line.txt, 100, 100); // Draws (strokes) a given text at the given (x, y) position.
 }
 
+function onDeleteLine(elInput, idx = 0) {
+    deleteLine(idx);
+    elInput.value = "";
+    renderCanvas();
+}
+
+function onChangeFont(action, idx = 0) {
+    let meme = getMeme();
+    if (meme.lines[idx].size === 8 || meme.lines[idx].size === 24) return;
+    setFontSize(action);
+    renderCanvas();
+}
+
+function onAlignText(align, idx = 0) {
+    setTextAlign(align);
+    renderCanvas();
+}
+
 function onSaveMeme() {
     saveMeme();
 }

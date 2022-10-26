@@ -37,21 +37,21 @@
             <div class="editor-mode flex space-between">
                 <input type="text" class="text1" placeholder="CAN'T GET FIRED" oninput="renderMemeText(0,this.value)" />
                 <div class="buttons-text-main flex space-between">
-                    <button class="switch">↨</button>
-                    <button class="add-line">+</button>
-                    <button class="delete-line">X</button>
+                    <button class="switch" onclick="onSwitchLine()">↨</button>
+                    <button class="add-line" onclick="onAddLine()">+</button>
+                    <button class="delete-line" onclick="onDeleteLine(this)">X</button>
                 </div>
                 <div class="buttons-text-secondary flex space-between">
-                    <button class="switch">↨</button>
-                    <button class="switch">↨</button>
-                    <button class="switch">↨</button>
-                    <button class="switch">↨</button>
-                    <button class="switch">↨</button>
+                    <button class="decrease-font" onclick="onChangeFont('-')">A-</button>
+                    <button class="increase-font" onclick="onChangeFont('+')">A+</button>
+                    <button class="align-left" onclick="onAlignText('left')">left</button>
+                    <button class="align-center" onclick="onAlignText('center')">center</button>
+                    <button class="align-right" onclick="onAlignText('right')">right</button>
                 </div>
                 <div class="share-buttons flex space-between">
                     <button class="save" onclick="onSaveMeme()">save</button>
-                    <button class="share">share</button>
-                    <button class="download">download</button>
+                    <button class="share" onclick="onShareMeme()">share</button>
+                    <button class="download" onclick="onDownloadMeme()">download</button>
                 </div>
             </div>
         </section>

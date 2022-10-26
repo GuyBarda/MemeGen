@@ -48,6 +48,7 @@ function setMeme(img = null) {
 }
 
 function setLine(idx, txt) {
+    if (!gMeme.lines.length) gMeme.lines.push(createLine(txt));
     gMeme.lines[idx].txt = txt;
 }
 
@@ -58,6 +59,11 @@ function getImages() {
 function getImageById(id) {
     return gImgs.find((img) => img.id === id);
 }
+
+function deleteLine(idx = 0) {
+    gMeme.lines.splice(idx, 1);
+    console.log(gMeme.lines);
+}
 function saveMeme() {
     gMemes.push(gMeme);
     saveMemesToStorage();
@@ -65,4 +71,13 @@ function saveMeme() {
 
 function saveMemesToStorage() {
     saveToStorage(gMemes, memesKey);
+}
+
+function setFontSize(action, idx = 0) {
+    if (action === "+") gMeme.lines[idx].size++;
+    else gMeme.lines[idx].size--;
+}
+
+function setTextAlign(align, idx = 0) {
+    gMeme.lines[idx].align = align;
 }
