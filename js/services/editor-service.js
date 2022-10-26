@@ -1,26 +1,6 @@
 "use strict";
 
-const memesKey = "MemesKey";
-var gKeywordSearchCountMap = { funny: 0, cat: 0, baby: 0 };
-var gImgs = createImages();
 var gMeme;
-var gMemes = [];
-
-function createImages() {
-    let images = [];
-    for (let i = 0; i < 18; i++) {
-        images.push(createImage(i + 1, ["funny", "cat"]));
-    }
-    return images;
-}
-
-function createImage(id, keywords) {
-    return {
-        id,
-        url: `meme-imgs-square/${id}.jpg`,
-        keywords,
-    };
-}
 
 function createMeme(img) {
     return {
@@ -52,14 +32,6 @@ function setLine(idx, txt) {
     gMeme.lines[idx].txt = txt;
 }
 
-function getImages() {
-    return gImgs;
-}
-
-function getImageById(id) {
-    return gImgs.find((img) => img.id === id);
-}
-
 function deleteLine(idx = 0) {
     gMeme.lines.splice(idx, 1);
     console.log(gMeme.lines);
@@ -70,7 +42,7 @@ function saveMeme() {
 }
 
 function saveMemesToStorage() {
-    saveToStorage(gMemes, memesKey);
+    saveToStorage(memesKey, gMemes);
 }
 
 function setFontSize(action, idx = 0) {
@@ -80,4 +52,8 @@ function setFontSize(action, idx = 0) {
 
 function setTextAlign(align, idx = 0) {
     gMeme.lines[idx].align = align;
+}
+
+function setFilterBy(filterBy) {
+    gFilterBy = filterBy;
 }

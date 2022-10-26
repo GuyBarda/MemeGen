@@ -11,35 +11,42 @@
         <header class="main-header">
             <div class="header-container flex">
                 <div class="logo">MemeGen</div>
-                <nav class="main-nav">
-                    <ul class="clean-list flex justify-center">
-                        <li><button href="#">Gallery</button></li>
-                        <li><button href="#">Memes</button></li>
-                        <li><button href="#">About</button></li>
-                    </ul>
+                <nav class="main-nav flex">
+                    <button onclick="onShowGallery()">Gallery</button>
+                    <button onclick="onShowMemes()">Memes</button>
+                    <button onclick="on">About</button>
                 </nav>
-                <!-- <div class="menu-button" onclick="toggleMenu(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div> -->
             </div>
         </header>
         <section class="gallery flex">
             <div class="search">
-                <input type="text" class="search-input" placeholder="Search" />
-                <div class="search-buttons">Funny</div>
+                <input type="text" class="search-input" placeholder="Search" oninput="onFilterBy(this.value)" />
+                <div class="search-buttons">
+                    <button class="funny" onclick="onFilterButton(this, 'funny')">funny</button>
+                    <button class="cat" onclick="onFilterButton(this, 'cat')">cat</button>
+                    <button class="dog" onclick="onFilterButton(this, 'dog')">dog</button>
+                    <button class="baby" onclick="onFilterButton(this, 'baby')">baby</button>
+                </div>
             </div>
             <div class="images-container"></div>
         </section>
         <section class="editor flex space-between hidden">
-            <canvas></canvas>
+            <div class="canvas-container">
+                <canvas></canvas>
+            </div>
             <div class="editor-mode flex space-between">
-                <input type="text" class="text1" placeholder="CAN'T GET FIRED" oninput="renderMemeText(0,this.value)" />
-                <div class="buttons-text-main flex space-between">
-                    <button class="switch" onclick="onSwitchLine()">↨</button>
-                    <button class="add-line" onclick="onAddLine()">+</button>
-                    <button class="delete-line" onclick="onDeleteLine(this)">X</button>
+                <div class="line1">
+                    <input
+                        type="text"
+                        class="text1"
+                        placeholder="CAN'T GET FIRED"
+                        oninput="renderMemeText(0,this.value)"
+                    />
+                    <div class="buttons-text-main flex space-between">
+                        <button class="switch" onclick="onSwitchLine()">↨</button>
+                        <button class="add-line" onclick="onAddLine()">+</button>
+                        <button class="delete-line" onclick="onDeleteLine(this)">X</button>
+                    </div>
                 </div>
                 <div class="buttons-text-secondary flex space-between">
                     <button class="decrease-font" onclick="onChangeFont('-')">A-</button>
@@ -55,9 +62,13 @@
                 </div>
             </div>
         </section>
+        <section class="memes flex hidden"></section>
         <script src="js/utility.js"></script>
         <script src="js/storage.js"></script>
-        <script src="js/services/main-service.js"></script>
-        <script src="js/controller/main-controller.js"></script>
+        <script src="js/services/gallery-service.js"></script>
+        <script src="js/services/editor-service.js"></script>
+        <script src="js/services/memes-service.js"></script>
+        <script src="js/controller/gallery-controller.js"></script>
+        <script src="js/controller/editor-controller.js"></script>
     </body>
 </html>
