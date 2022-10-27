@@ -46,6 +46,7 @@
 }
 
 html {
+    width: 100%;
     font-family: "Poppins", sans-serif;
 }
 
@@ -74,6 +75,7 @@ a {
     border: 0;
     border-radius: 10px;
     box-shadow: 0 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    color: #22252c;
     font-size: 30px;
 }
 
@@ -203,7 +205,7 @@ a {
     justify-content: center; */
 }
 
-.editor .editor-mode .text1 {
+.editor .editor-mode .text {
     background-color: #ebeef3;
     border-radius: 29px;
     border: 0;
@@ -214,7 +216,7 @@ a {
     box-shadow: 0 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
 }
 
-.editor .editor-mode .text1:focus {
+.editor .editor-mode .text:focus {
     outline: none;
     box-shadow: 1px 5px 0 var(--clr-nav1), inset 0 5px 0 var(--clr-nav2);
 }
@@ -223,6 +225,16 @@ a {
     margin-inline: auto;
     justify-content: space-evenly;
     gap: 10px;
+}
+
+.editor .editor-mode .buttons-text-secondary {
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.editor .editor-mode .share-buttons a {
+    background-color: buttonface;
+    color: #22252c;
 }
 
 canvas {
@@ -253,4 +265,29 @@ canvas {
 }
 
 @media screen and (max-width: 980px) {
+    .download,
+    .editor button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .editor .editor-mode .buttons-text-secondary input {
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .editor {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .download,
+    .editor-mode button {
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+    }
+    .editor-mode {
+        gap: 30px;
+    }
 }

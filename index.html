@@ -36,41 +36,56 @@
                 <canvas></canvas>
             </div>
             <div class="editor-mode flex flex-column space-between">
-                <input
-                    type="text"
-                    class="text1"
-                    placeholder="CAN'T GET FIRED"
-                    oninput="renderMemeText(this.value, 0)"
-                />
+                <input type="text" class="text" placeholder="CAN'T GET FIRED" oninput="renderMemeText(this.value)" />
                 <div class="buttons-text-main flex">
-                    <button class="switch" onclick="onSwitchLine()">
+                    <button class="switch" onclick="onSwitchLine()" title="Switch line">
                         <i class="fa-solid fa-up-down"></i>
                     </button>
-                    <button class="add-line" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
-                    <button class="delete-line" onclick="onDeleteLine()"><i class="fa-solid fa-trash"></i></button>
+                    <button class="add-line" onclick="onAddLine()" title="Add line">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button class="delete-line" onclick="onDeleteLine()" title="Delete line">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+
+                <div class="color-inputs">
+                    <input
+                        type="color"
+                        value="#22252c"
+                        oninput="onChangeStrokeColor(this.value)"
+                        title="Change stroke color"
+                    />
+                    <input type="color" value="#22252c" oninput="onChangeColor(this.value)" title="Change fill color" />
                 </div>
 
                 <div class="buttons-text-secondary flex">
-                    <button class="increase-font" onclick="onChangeFont('+')">
+                    <button class="increase-font" onclick="onChangeFont('+')" title="Increase font">
                         <i class="fa-solid fa-font"></i>
                     </button>
-                    <button class="decrease-font" onclick="onChangeFont('-')">
+                    <button class="decrease-font" onclick="onChangeFont('-')" title="Decrease font">
                         <i class="fa-solid fa-font fa-small"></i>
                     </button>
-                    <button class="align-left" onclick="onAlignText('left')">
+                    <button class="align-left" onclick="onAlignText('left')" title="Align left">
                         <i class="fa-solid fa-align-left"></i>
                     </button>
-                    <button class="align-center" onclick="onAlignText('center')">
+                    <button class="align-center" onclick="onAlignText('center')" title="Align center">
                         <i class="fa-solid fa-align-center"></i>
                     </button>
-                    <button class="align-right" onclick="onAlignText('right')">
+                    <button class="align-right" onclick="onAlignText('right')" title="Align right">
                         <i class="fa-solid fa-align-right"></i>
                     </button>
                 </div>
                 <div class="share-buttons flex">
-                    <button class="save" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
-                    <button class="share" onclick="onShareMeme()"><i class="fa-solid fa-share"></i></button>
-                    <a class="download" href="#" onclick="onDownloadMeme(this)"><i class="fa-solid fa-download"></i></a>
+                    <button class="save" title="Save" onclick="onSaveMeme()">
+                        <i class="fa-regular fa-floppy-disk"></i>
+                    </button>
+                    <button title="Share" class="share" onclick="onShareMeme()">
+                        <i class="fa-solid fa-share"></i>
+                    </button>
+                    <a class="download" title="Download" href="#" onclick="onDownloadMeme(this)"
+                        ><i class="fa-solid fa-download"></i
+                    ></a>
                 </div>
             </div>
         </section>

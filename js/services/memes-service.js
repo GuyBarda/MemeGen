@@ -1,5 +1,7 @@
 "use strict";
 
+const memesKey = "MemesKey";
+
 var gMemes = loadFromStorage(memesKey) || [];
 console.log(gMemes);
 

@@ -1,6 +1,5 @@
 "use strict";
 
-const memesKey = "MemesKey";
 var gKeywordSearchCountMap = { funny: 0, cat: 0, dog: 0, baby: 0 };
 var gImgs = createImages();
 var gFilterBy = "";
@@ -41,7 +40,6 @@ function createImage(id, keywords) {
 }
 
 function getImages() {
-    console.log(gImgs);
     let images = gImgs.filter((img) => img.keywords.some((keyword) => keyword.includes(gFilterBy)));
     return images;
 }

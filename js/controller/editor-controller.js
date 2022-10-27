@@ -35,32 +35,31 @@ function renderCanvas() {
 
     // render the lines
     meme.lines.forEach((line, idx) => {
-        if (idx === meme.selectedLineIdx) drawText(line, idx, true);
-        else drawText(line, idx);
+        drawLine(line, idx, meme.selectedLineIdx);
     });
 }
 
-function drawText({ color, size, align, txt }, idx, isSelected = false) {
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = "black";
-    gCtx.fillStyle = color;
-    gCtx.font = `${size}px Poppins`;
-    gCtx.textAlign = align;
+function drawLine(line, idx, selectedLineIdx) {
+    const { x, y, xRect, yRect } = setPositionByAlignAndIdx(line, idx);
+    drawText(line, x, y);
+    if (idx === selectedLineIdx) drawTextRect(xRect, yRect, gCtx.measureText(line.txt).width + 20, line.size);
+}
+
+function setPositionByAlignAndIdx({ align, txt, size }, idx) {
     let x = gElCanvas.width / 2;
     let y = 50;
     let xRect = (gElCanvas.width - gCtx.measureText(txt).width - 20) / 2;
     let yRect = 53 - size;
 
-    if (idx === 0) {
-        y = 50;
-    } else if (idx === 1) {
+    if (idx === 1) {
         y = gElCanvas.height - 50;
-        yRect = gElCanvas.height - 53 - size;
+        yRect = gElCanvas.height - 45 - size;
+    } else if (idx >= 2) {
+        y = gElCanvas.height / 2;
+        yRect = gElCanvas.height / 2 - size + 5;
     }
 
-    if (align === "center") {
-        x = gElCanvas.width / 2;
-    } else if (align === "left") {
+    if (align === "left") {
         x = 10;
         xRect = 0;
     } else if (align === "right") {
@@ -68,13 +67,22 @@ function drawText({ color, size, align, txt }, idx, isSelected = false) {
         xRect = gElCanvas.width - gCtx.measureText(txt).width - 20;
     }
 
+    return { x, y, xRect, yRect };
+}
+
+function drawText({ color, size, align, txt, strokeColor }, x, y) {
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = strokeColor;
+    gCtx.fillStyle = color;
+    gCtx.font = `${size}px Poppins`;
+    gCtx.textAlign = align;
     gCtx.fillText(txt, x, y);
     gCtx.strokeText(txt, x, y);
+}
 
-    if (!isSelected) return;
-
+function drawTextRect(x, y, width, height) {
     gCtx.strokeStyle = "red";
-    gCtx.strokeRect(xRect, yRect, gCtx.measureText(txt).width + 20, size);
+    gCtx.strokeRect(x, y, width, height);
     gCtx.fillStyle = "orange";
 }
 
@@ -110,6 +118,16 @@ function onChangeFont(action) {
 function onAlignText(align) {
     setTextAlign(align);
     document.querySelector(".text1").focus();
+    renderCanvas();
+}
+
+function onChangeStrokeColor(color) {
+    changeStrokeColor(color);
+    renderCanvas();
+}
+
+function onChangeColor(color) {
+    changeColor(color);
     renderCanvas();
 }
 

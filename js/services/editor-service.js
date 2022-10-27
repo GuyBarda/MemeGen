@@ -10,11 +10,12 @@ function createMeme(img) {
     };
 }
 
-function createLine(txt = "", size = "35", align = "center", color = "white") {
+function createLine(txt = "", size = "35", align = "center", strokeColor = "black", color = "white") {
     return {
         txt,
         size,
         align,
+        strokeColor,
         color,
     };
 }
@@ -62,6 +63,14 @@ function setFontSize(action) {
 
 function setTextAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align;
+}
+
+function changeStrokeColor(sColor) {
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = sColor;
+}
+
+function changeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
 function setFilterBy(filterBy) {
