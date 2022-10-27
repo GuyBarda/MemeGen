@@ -38,14 +38,6 @@
     display: none;
 }
 
-.editor button {
-    width: 55px;
-    height: 55px;
-    border: 0;
-    border-radius: 10px;
-    box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
-}
-
 /* BASICS */
 
 * {
@@ -68,11 +60,22 @@ body {
 button {
     cursor: pointer;
 }
-/* a {
+
+a {
     font-size: 21px;
     text-align: center;
     text-decoration: none;
-} */
+}
+
+.download,
+.editor button {
+    width: 55px;
+    height: 55px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    font-size: 30px;
+}
 
 /* MAIN HEADER */
 
@@ -122,6 +125,8 @@ button {
 
 /* MAIN SECTION */
 
+/* gallery */
+
 .gallery {
     background-color: #383b42;
     padding: 25px;
@@ -129,13 +134,13 @@ button {
 }
 
 .gallery .search {
-    /* flex-direction: row; */
     height: 58px;
 }
 
 .gallery .search-input {
     flex-basis: 49%;
     background-color: #22252c;
+    color: grey;
     border-radius: 29px;
     padding-inline-start: 50px;
     font-size: 21px;
@@ -176,6 +181,8 @@ button {
     opacity: 0.5;
 }
 
+/* editor */
+
 .editor {
     background-color: transparent;
     justify-content: space-evenly;
@@ -192,9 +199,11 @@ button {
     flex-basis: 48%;
     padding: 24px 40px;
     border-radius: 30px;
+    /* gap: 20px;
+    justify-content: center; */
 }
 
-.editor .editor-mode .line1 .text1 {
+.editor .editor-mode .text1 {
     background-color: #ebeef3;
     border-radius: 29px;
     border: 0;
@@ -202,10 +211,18 @@ button {
     font-size: 25px;
     text-align: center;
     padding-block: 20px;
-    box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    box-shadow: 0 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
 }
 
-.editor .editor-mode .line1 .text1 {
+.editor .editor-mode .text1:focus {
+    outline: none;
+    box-shadow: 1px 5px 0 var(--clr-nav1), inset 0 5px 0 var(--clr-nav2);
+}
+
+.editor .editor-mode > *:not(input) {
+    margin-inline: auto;
+    justify-content: space-evenly;
+    gap: 10px;
 }
 
 canvas {
@@ -229,6 +246,10 @@ canvas {
 .memes img:hover {
     cursor: pointer;
     opacity: 0.5;
+}
+
+.fa-small {
+    font-size: 20px;
 }
 
 @media screen and (max-width: 980px) {

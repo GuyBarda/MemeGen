@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/style.css" />
+        <script src="https://kit.fontawesome.com/17efc029e4.js" crossorigin="anonymous"></script>
         <title>Sprint2</title>
     </head>
     <body class="flex flex-column" onload="onInit()">
@@ -35,39 +36,50 @@
                 <canvas></canvas>
             </div>
             <div class="editor-mode flex flex-column space-between">
-                <div class="line1">
-                    <input
-                        type="text"
-                        class="text1"
-                        placeholder="CAN'T GET FIRED"
-                        oninput="renderMemeText(0,this.value)"
-                    />
-                    <div class="buttons-text-main flex space-between">
-                        <button class="switch" onclick="onSwitchLine()">↨</button>
-                        <button class="add-line" onclick="onAddLine()">+</button>
-                        <button class="delete-line" onclick="onDeleteLine(this)">X</button>
-                    </div>
+                <input
+                    type="text"
+                    class="text1"
+                    placeholder="CAN'T GET FIRED"
+                    oninput="renderMemeText(this.value, 0)"
+                />
+                <div class="buttons-text-main flex">
+                    <button class="switch" onclick="onSwitchLine()">
+                        <i class="fa-solid fa-up-down"></i>
+                    </button>
+                    <button class="add-line" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button class="delete-line" onclick="onDeleteLine()"><i class="fa-solid fa-trash"></i></button>
                 </div>
-                <div class="buttons-text-secondary flex space-between">
-                    <button class="decrease-font" onclick="onChangeFont('-')">A-</button>
-                    <button class="increase-font" onclick="onChangeFont('+')">A+</button>
-                    <button class="align-left" onclick="onAlignText('left')">left</button>
-                    <button class="align-center" onclick="onAlignText('center')">center</button>
-                    <button class="align-right" onclick="onAlignText('right')">right</button>
+
+                <div class="buttons-text-secondary flex">
+                    <button class="increase-font" onclick="onChangeFont('+')">
+                        <i class="fa-solid fa-font"></i>
+                    </button>
+                    <button class="decrease-font" onclick="onChangeFont('-')">
+                        <i class="fa-solid fa-font fa-small"></i>
+                    </button>
+                    <button class="align-left" onclick="onAlignText('left')">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+                    <button class="align-center" onclick="onAlignText('center')">
+                        <i class="fa-solid fa-align-center"></i>
+                    </button>
+                    <button class="align-right" onclick="onAlignText('right')">
+                        <i class="fa-solid fa-align-right"></i>
+                    </button>
                 </div>
-                <div class="share-buttons flex space-between">
-                    <button class="save" onclick="onSaveMeme()">save</button>
-                    <button class="share" onclick="onShareMeme()">share</button>
-                    <button class="download" onclick="onDownloadMeme()">download</button>
+                <div class="share-buttons flex">
+                    <button class="save" onclick="onSaveMeme()"><i class="fa-regular fa-floppy-disk"></i></button>
+                    <button class="share" onclick="onShareMeme()"><i class="fa-solid fa-share"></i></button>
+                    <a class="download" href="#" onclick="onDownloadMeme(this)"><i class="fa-solid fa-download"></i></a>
                 </div>
             </div>
         </section>
         <section class="memes flex hidden"></section>
         <script src="js/utility.js"></script>
         <script src="js/storage.js"></script>
+        <script src="js/services/memes-service.js"></script>
         <script src="js/services/gallery-service.js"></script>
         <script src="js/services/editor-service.js"></script>
-        <script src="js/services/memes-service.js"></script>
         <script src="js/controller/gallery-controller.js"></script>
         <script src="js/controller/editor-controller.js"></script>
     </body>

@@ -27,33 +27,37 @@ function setMeme(img = null) {
     gMeme = createMeme(img);
 }
 
-function setLine(idx, txt) {
+function setLine(txt) {
     if (!gMeme.lines.length) gMeme.lines.push(createLine(txt));
-    gMeme.lines[idx].txt = txt;
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt;
+}
+
+function addLine() {
+    gMeme.lines.push(createLine());
+    console.log(gMeme);
 }
 
 function switchLine() {
-    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
-    else gMeme.selectedLineIdx++;
-    console.log(gMeme.selectedLineIdx);
+    gMeme.selectedLineIdx++;
+    if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0;
+    return gMeme.lines[gMeme.selectedLineIdx].txt;
+}
+
+function removeSelectedLine() {
+    gMeme.selectedLineIdx = -1;
+    setTimeout(() => (gMeme.selectedLineIdx = 0), 1);
 }
 
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    gMeme.selectedLineIdx = 0;
     console.log(gMeme.lines);
-}
-function saveMeme() {
-    gMemes.push(gMeme);
-    saveMemesToStorage();
-}
-
-function saveMemesToStorage() {
-    saveToStorage(memesKey, gMemes);
 }
 
 function setFontSize(action) {
-    if (action === "+") gMeme.lines[gMeme.selectedLineIdx].size++;
-    else gMeme.lines[gMeme.selectedLineIdx].size--;
+    const { lines, selectedLineIdx } = gMeme;
+    if (action === "+" && lines[selectedLineIdx].size <= 40) lines[selectedLineIdx].size++;
+    else if (action === "-" && lines[selectedLineIdx].size >= 20) lines[selectedLineIdx].size--;
 }
 
 function setTextAlign(align) {

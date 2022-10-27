@@ -6,6 +6,11 @@ function onInit() {
     gElCanvas = document.querySelector("canvas");
     gCtx = gElCanvas.getContext("2d");
 
+    gFilterBy = "";
+    gMemes = [];
+    gMeme = null;
+    gKeywordSearchCountMap = { funny: 0, cat: 0, dog: 0, baby: 0 };
+
     renderImgaes();
     resizeCanvas();
     renderCanvas();
@@ -19,7 +24,7 @@ function renderImgaes() {
             <img src="${url}" alt="" style="" onclick="openEditor(${id})"/>
             `
     );
-    document.querySelector(".images-container").innerHTML = strHTMLs.join();
+    document.querySelector(".images-container").innerHTML = strHTMLs.join("");
 }
 
 function onShowGallery() {
@@ -61,7 +66,11 @@ function onFilterButton(elbtn, filterBy) {
 
 function renderMemes() {
     let memes = getSavedMemes();
-    console.log(memes);
+    const elMemes = document.querySelector(".memes");
+    if (!memes || !memes.length) {
+        elMemes.innerHTML = "Save some memes so you can edit them later";
+        return;
+    }
     let strHTMLs = memes.map(({ img }) => `<img src="${img.url}" alt="" onclick1="openEditor(${img})"/>`);
-    document.querySelector(".memes").innerHTML = strHTMLs.join();
+    elMemes.innerHTML = strHTMLs.join();
 }
