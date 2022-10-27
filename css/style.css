@@ -201,8 +201,6 @@ a {
     flex-basis: 48%;
     padding: 24px 40px;
     border-radius: 30px;
-    /* gap: 20px;
-    justify-content: center; */
 }
 
 .editor .editor-mode .text {
@@ -264,6 +262,39 @@ canvas {
     font-size: 20px;
 }
 
+.menu-button {
+    display: inline-block;
+    cursor: pointer;
+    display: none;
+}
+
+/* CLOSE BUTTON */
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+}
+
 @media screen and (max-width: 980px) {
     .download,
     .editor button {
@@ -271,23 +302,47 @@ canvas {
         height: 30px;
         font-size: 16px;
     }
-
-    .editor .editor-mode .buttons-text-secondary input {
-    }
 }
 
 @media screen and (max-width: 800px) {
+    .gallery .search {
+        flex-direction: column;
+        gap: 10px;
+        height: 180px;
+    }
+
     .editor {
         flex-direction: column;
         gap: 20px;
     }
+
     .download,
     .editor-mode button {
         width: 55px;
         height: 55px;
         font-size: 30px;
     }
+
     .editor-mode {
         gap: 30px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header-container .main-nav {
+        gap: 0;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-container .main-nav {
+        margin-inline: 10px;
+    }
+
+    .header-container .main-nav button {
+        padding: 5px 10px;
+        font-size: 12px;
     }
 }
