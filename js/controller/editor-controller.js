@@ -87,7 +87,7 @@ function drawTextRect(x, y, width, height) {
 }
 
 function onSwitchLine() {
-    const elInput = document.querySelector(".text1");
+    const elInput = document.querySelector(".text");
     let value = switchLine();
     elInput.value = value;
     elInput.focus();
@@ -96,12 +96,12 @@ function onSwitchLine() {
 
 function onDeleteLine() {
     deleteLine();
-    document.querySelector(".text1").value = "";
+    document.querySelector(".text").value = "";
     renderCanvas();
 }
 
 function onAddLine() {
-    const elInput = document.querySelector(".text1");
+    const elInput = document.querySelector(".text");
     addLine();
     switchLine();
     elInput.value = "";
@@ -111,13 +111,13 @@ function onAddLine() {
 
 function onChangeFont(action) {
     setFontSize(action);
-    document.querySelector(".text1").focus();
+    document.querySelector(".text").focus();
     renderCanvas();
 }
 
 function onAlignText(align) {
     setTextAlign(align);
-    document.querySelector(".text1").focus();
+    document.querySelector(".text").focus();
     renderCanvas();
 }
 

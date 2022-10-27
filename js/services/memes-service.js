@@ -19,3 +19,7 @@ function saveMeme() {
 function saveMemesToStorage() {
     saveToStorage(memesKey, gMemes);
 }
+
+function getMemeById(id) {
+    return gMemes.find((meme) => meme.id === id);
+}

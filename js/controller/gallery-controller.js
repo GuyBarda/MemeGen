@@ -71,6 +71,7 @@ function renderMemes() {
         elMemes.innerHTML = "Save some memes so you can edit them later";
         return;
     }
-    let strHTMLs = memes.map(({ img }) => `<img src="${img.url}" alt="" onclick1="openEditor(${img})"/>`);
+
+    let strHTMLs = memes.map(({ img, id }) => `<img src="${img.url}" alt="" onclick="onContinueEdit('${id}')"/>`);
     elMemes.innerHTML = strHTMLs.join();
 }

@@ -4,6 +4,7 @@ var gMeme;
 
 function createMeme(img) {
     return {
+        id: makeId(),
         img,
         selectedLineIdx: 0,
         lines: [createLine()],
@@ -26,6 +27,10 @@ function getMeme() {
 
 function setMeme(img = null) {
     gMeme = createMeme(img);
+}
+
+function setMemeFromMemes(meme) {
+    gMeme = meme;
 }
 
 function setLine(txt) {
