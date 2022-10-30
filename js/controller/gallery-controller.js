@@ -7,13 +7,20 @@ function onInit() {
     gCtx = gElCanvas.getContext("2d");
 
     gFilterBy = "";
-    gMemes = [];
     gMeme = null;
     gKeywordSearchCountMap = { funny: 0, cat: 0, dog: 0, baby: 0 };
 
+    window.addEventListener('resize' , (ev) => {
+        let meme = getMeme()
+        if(!meme) return
+        // console.log(ev.target.visualViewport);
+        resizeCanvas(meme.img)
+        renderCanvas()
+    })
+    resizeCanvas()
+    renderCanvas()
     renderImgaes();
-    resizeCanvas();
-    renderCanvas();
+    addMouseListeners()
 }
 
 function renderImgaes() {
@@ -28,12 +35,15 @@ function renderImgaes() {
 }
 
 function onShowGallery() {
+    setMeme();
+    document.querySelector('.text').value = '';
     document.querySelector(".gallery").classList.remove("hidden");
     document.querySelector(".editor").classList.add("hidden");
     document.querySelector(".memes").classList.add("hidden");
 }
 
 function onShowMemes() {
+    setMeme();
     document.querySelector(".gallery").classList.add("hidden");
     document.querySelector(".editor").classList.add("hidden");
     document.querySelector(".memes").classList.remove("hidden");
@@ -42,10 +52,12 @@ function onShowMemes() {
 
 function openEditor(id) {
     let img = getImageById(id);
+    setMeme(img);
+    let meme = getMeme()
     document.querySelector(".gallery").classList.add("hidden");
     document.querySelector(".editor").classList.remove("hidden");
     document.querySelector(".memes").classList.add("hidden");
-    setMeme(img);
+    document.querySelector('.text').value =meme.lines[meme.selectedLineIdx].txt;
     resizeCanvas(img);
     renderCanvas();
 }
@@ -59,7 +71,7 @@ function onFilterButton(elbtn, filterBy) {
     setFilterBy(filterBy);
     setKeywordCount(filterBy);
     console.log(getKeywordCount());
-    elbtn.style.fontSize += getKeywordCount() + "px";
+    elbtn.style.fontSize += getKeywordCount() + "px"; // not working
     // console.log(elbtn.style.fontSize);
     renderImgaes();
 }

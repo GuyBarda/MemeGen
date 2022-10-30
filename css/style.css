@@ -79,9 +79,15 @@ a {
     font-size: 30px;
 }
 
+.main-layout > *:not(.full) {
+    max-width: 980px;
+    margin-inline: auto;
+}
+
 /* MAIN HEADER */
 
 .main-header {
+    width: 100%;
     background: linear-gradient(90deg, var(--clr-nav2), var(--clr-nav1));
     color: #eaeaea;
     padding-inline: 50px;
@@ -118,6 +124,7 @@ a {
     color: #eaeaea;
     padding: 10px 20px;
     font-size: 21px;
+    transition: background-color .2s;
 }
 
 .main-header .main-nav button:hover {
@@ -133,10 +140,12 @@ a {
     background-color: #383b42;
     padding: 25px;
     border-radius: 10px;
+    gap: 20px;
 }
 
 .gallery .search {
     height: 58px;
+    width: 100%;
 }
 
 .gallery .search-input {
@@ -167,15 +176,19 @@ a {
 }
 
 .gallery .images-container {
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    /* gap: 40px; */
+    /* margin-block: auto; */
 }
 
 .gallery .images-container img {
-    margin: 30px;
     border-radius: 15px;
     width: 200px;
     object-fit: cover;
+    opacity: 1;
+    transition: opacity .3s;
 }
 
 .gallery .images-container img:hover {
@@ -188,6 +201,7 @@ a {
 .editor {
     background-color: transparent;
     justify-content: space-evenly;
+    gap: 20px;
 }
 
 .editor .canvas-container {
@@ -212,6 +226,7 @@ a {
     text-align: center;
     padding-block: 20px;
     box-shadow: 0 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    transition: box-shadow .3s;
 }
 
 .editor .editor-mode .text:focus {
@@ -326,6 +341,14 @@ canvas {
     .editor-mode {
         gap: 30px;
     }
+
+    .gallery{
+        gap: 30px;
+    }
+
+    .gallery .images-container img {
+        width: 40%;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -344,5 +367,13 @@ canvas {
     .header-container .main-nav button {
         padding: 5px 10px;
         font-size: 12px;
+    }
+
+    .gallery{
+        gap: 40px;
+    }
+
+    .gallery .images-container img {
+        width: 80%;
     }
 }

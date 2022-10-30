@@ -12,6 +12,7 @@ function resizeCanvas(image = "") {
         gElCanvas.height = elContainer.offsetHeight / 2;
         return;
     }
+
     const img = new Image();
     img.src = image.url;
     let imgHeight = img.naturalHeight;
@@ -41,19 +42,33 @@ function renderCanvas() {
 
 function drawLine(line, idx, selectedLineIdx) {
     const { x, y, xRect, yRect } = setPositionByAlignAndIdx(line, idx);
+    console.log('xrect', xRect);
+    
+    setLinePos({xRect, yRect, width: gCtx.measureText(line.txt).width + 20})
     drawText(line, x, y);
-    if (idx === selectedLineIdx) drawTextRect(xRect, yRect, gCtx.measureText(line.txt).width + 20, line.size);
+    if (idx === selectedLineIdx)
+        drawTextRect(
+            line.strokeColor,
+            xRect,
+            yRect,
+            gCtx.measureText(line.txt).width + 20,
+            line.size
+        );
 }
 
 function setPositionByAlignAndIdx({ align, txt, size }, idx) {
+    console.log(txt);
+    
+    console.log('txt',gCtx.measureText(txt).width);
+    
     let x = gElCanvas.width / 2;
-    let y = 50;
+    let y = 80;
     let xRect = (gElCanvas.width - gCtx.measureText(txt).width - 20) / 2;
-    let yRect = 53 - size;
+    let yRect = 85 - size;
 
     if (idx === 1) {
-        y = gElCanvas.height - 50;
-        yRect = gElCanvas.height - 45 - size;
+        y = gElCanvas.height - 80;
+        yRect = gElCanvas.height - 75 - size;
     } else if (idx >= 2) {
         y = gElCanvas.height / 2;
         yRect = gElCanvas.height / 2 - size + 5;
@@ -80,10 +95,11 @@ function drawText({ color, size, align, txt, strokeColor }, x, y) {
     gCtx.strokeText(txt, x, y);
 }
 
-function drawTextRect(x, y, width, height) {
-    gCtx.strokeStyle = "red";
+function drawTextRect(color, x, y, width, height) {
+    gCtx.strokeStyle = color;
     gCtx.strokeRect(x, y, width, height);
-    gCtx.fillStyle = "orange";
+    console.log(height);
+    
 }
 
 function onSwitchLine() {
@@ -144,11 +160,50 @@ function onDownloadMeme(elLink) {
     elLink.download = "My Meme";
 }
 
-// function renderMeme() {
-//     let meme = getMeme();
-//     const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 };
-//     gCtx.font = `${meme.lines[0].size}px ${settings.font}`;
-//     gCtx.textAlign = `${meme.lines[0].align}`;
-//     const text = gCtx.measureText(`${meme.lines[0].txt}`);
-//     gCtx.fillText(`${meme.lines[0].txt}`, center.x - text.width / 2, 50);
-// }
+function addMouseListeners() {
+    gElCanvas.addEventListener("mousemove", onMove);
+    gElCanvas.addEventListener("mousedown", onDown);
+    gElCanvas.addEventListener("mouseup", onUp);
+}
+
+function onDown(ev) {
+    // console.log("Im from onDown");
+    //Get the ev pos from mouse or touch
+    const pos = getEvPos(ev);
+    console.log(gMeme.lines[gMeme.selectedLineIdx].pos);
+    
+    console.log('click', pos);
+    
+    if(isLineClicked(pos)) console.log('clicked the line');
+    
+    // if (!isLineClicked(pos)) return;
+    setLineDrag(true);
+    //Save the pos we start from
+    // gStartPos = pos;
+    document.body.style.cursor = "grabbing";
+}
+
+function onMove(ev) {
+    // console.log("Im from onMove");
+    // const { isDrag } = getCircle();
+    // if (!isDrag) return;
+    // const pos = getEvPos(ev);
+    // //Calc the delta , the diff we moved
+    // const dx = pos.x - gStartPos.x;
+    // const dy = pos.y - gStartPos.y;
+    // moveCircle(dx, dy);
+    // //Save the last pos , we remember where we`ve been and move accordingly
+    // gStartPos = pos;
+    // //The canvas is render again after every move
+    // renderCanvas();
+}
+
+function onUp() {
+    console.log("Im from onUp");
+    setLineDrag(false);
+    document.body.style.cursor = "grab";
+}
+
+function getEvPos(ev) {
+    return { x: ev.offsetX, y: ev.offsetY };
+}

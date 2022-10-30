@@ -40,7 +40,9 @@ function createImage(id, keywords) {
 }
 
 function getImages() {
-    let images = gImgs.filter((img) => img.keywords.some((keyword) => keyword.includes(gFilterBy)));
+    let images = gImgs.filter((img) =>
+        img.keywords.some((keyword) => keyword.includes(gFilterBy))
+    );
     return images;
 }
 

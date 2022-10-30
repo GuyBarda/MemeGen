@@ -3,7 +3,6 @@
 const memesKey = "MemesKey";
 
 var gMemes = loadFromStorage(memesKey) || [];
-console.log(gMemes);
 
 function getSavedMemes() {
     return gMemes;
@@ -11,7 +10,6 @@ function getSavedMemes() {
 
 function saveMeme() {
     let meme = getMeme();
-    console.log(gMemes);
     gMemes.push(meme);
     saveMemesToStorage();
 }
