@@ -85,5 +85,5 @@ function renderMemes() {
     }
 
     let strHTMLs = memes.map(({ img, id }) => `<img src="${img.url}" alt="" onclick="onContinueEdit('${id}')"/>`);
-    elMemes.innerHTML = strHTMLs.join();
+    elMemes.innerHTML = strHTMLs.join('');
 }

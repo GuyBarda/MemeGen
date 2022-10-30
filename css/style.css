@@ -136,6 +136,7 @@ a {
 
 /* gallery */
 
+.memes,
 .gallery {
     background-color: #383b42;
     padding: 25px;
@@ -179,10 +180,11 @@ a {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* gap: 40px; */
+    gap: 50px;
     /* margin-block: auto; */
 }
 
+.memes img ,
 .gallery .images-container img {
     border-radius: 15px;
     width: 200px;
@@ -252,20 +254,6 @@ a {
 
 canvas {
     border-radius: 29px;
-}
-
-.memes {
-    background-color: #383b42;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-.memes img {
-    margin: 30px;
-    border-radius: 15px;
-    width: 200px;
-    /* height: 150px; */
-    object-fit: cover;
 }
 
 .memes img:hover {
